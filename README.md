@@ -11,4 +11,5 @@ Persistent filter state in the backend – We could generate a short unique iden
 I’d love to get your thoughts on these approaches! If this is a high priority, I can put together a more detailed plan with trade-offs and estimates on effort. Let me know how you’d like to proceed.
 
 Regards,
+
 Gabriel Diaz
