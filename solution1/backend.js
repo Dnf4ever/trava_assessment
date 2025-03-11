@@ -13,14 +13,14 @@ client.connect();
 
 app.use(express.json());
 
-// Function to generate a SHA-256 hash (URL-safe)
+//THis function will generate a SHA-256 hash that is URL-safe
 function generateHash(filterObject) {
     const jsonString = JSON.stringify(filterObject);
     const hash = crypto.createHash("sha256").update(jsonString).digest("base64url"); // URL-safe base64
-    return hash.substring(0, 10); // Shorten to first 10 characters which should be collision-resistant enough
+    return hash.substring(0, 10); // Since we want short URLs, cut this to the first 10 characters. It will produce a nice short URL which should also be collision-resistant enough.
 }
 
-// Save the filter state and return the short URL hash
+// Route to save the filter state and return the short URL hash
 app.post("/save-filters", async (req, res) => {
     const filters = req.body;
     const hash = generateHash(filters);
@@ -31,7 +31,7 @@ app.post("/save-filters", async (req, res) => {
     res.json({ shortUrl: `https://app.trava.com/users?filter=${hash}` });
 });
 
-// Retrieve the filter state from the cache
+// Route to retrieve the filter state from the cache
 app.get("/filters/:hash", async (req, res) => {
     const hash = req.params.hash;
     const filterData = await client.get(`filter:${hash}`);
