@@ -17,6 +17,16 @@ This prevents unnecessary clutter while still allowing users to share and revisi
 
 This approach makes URLs shorter and more user-friendly, keeps filter states persistent without exposing sensitive details in the URL, and ensures users can easily share the exact table view they intended.
 
+##Considerations BEFORE starting
+
+There are a few things I would think about before starting on this feature. URL lengths are limited to a certain amount of characters. While the character limit is pretty generous, we don't want to accidentally go over the limit, this could cause problems when trying to replicate a URL, as it might get truncated and possibly break the functionality.
+
+Security and tamper resistance are also a big concern, especially when sharing links. If a filter is encoded too simply, it could be easily reversed and therefore open to decoding by a bad actor who could get access to sensitive data from the decoded string.
+
+Error handling in the event that an encoded URL doesn't decode correctly. Users would benefit from seeing an error message saying that the filters could not be applied or recovered rather than seeing a 404 page with no explanation.
+
+I would also consider adding a UI button to generate the encoded URL rather than having to do it after every single filter is applied. This reduces overhead since the encoding wouldn't have to happen with every filter being applied. If we're going with the backend caching route, then it would save a ton of space in the cache from unnecessarily created links.
+
 ##Next Steps
 
 After the URL shortening feature is live, there are some possible UX enhancements that I would consider. Since today's world is connected via messaging apps, our phones, and the like, I think these 3 features would go a long way to enhance ease of sharing.
@@ -31,7 +41,7 @@ After the URL shortening feature is live, there are some possible UX enhancement
 
 This isn't the full scope of ongoing maintenance, these are just some of the things that popped into my head as possible pain points and other possible considerations, security being a big one.
 
-1) Redis Cache Cleanup & Expiration Handling – Since filter hashes are stored in Redis, it's important to manage expiration policies properly. Redis's built-in time-to-live settings should take care of this, but a background job should periodically clean up stale keys to ensure efficient memory usage and prevent unnecessary cache growth.
+1) Redis Cache Cleanup and Expiration Handling – Since filter hashes are stored in Redis, it's important to manage expiration policies properly. Redis's built-in time-to-live settings should take care of this, but a background job should periodically clean up stale keys to ensure efficient memory usage and prevent unnecessary cache growth.
 
 2) Monitoring for Hash Collisions – If the hash-generation method ever results in a duplicate (two different filter states producing the same hash), it could cause incorrect filters to be applied. Although this is highly unlikely due to the collision proof steps taken in the code, implementing logging or collision detection could help catch and resolve any issues that might pop up.
 
