@@ -31,7 +31,7 @@ app.post("/save-filters", async (req, res) => {
     res.json({ shortUrl: `https://app.trava.com/users?filter=${hash}` });
 });
 
-// Retrieve the filter state from hash
+// Retrieve the filter state from the cache
 app.get("/filters/:hash", async (req, res) => {
     const hash = req.params.hash;
     const filterData = await client.get(`filter:${hash}`);
