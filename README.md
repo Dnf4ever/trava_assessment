@@ -6,7 +6,7 @@ Thanks for reaching out! I’m glad you like the filtering and sorting features,
 
 Encoding filters more efficiently – We could use a compact format to represent the filter state instead of listing each parameter explicitly. This would shorten the URL while still preserving the ability to share it.
 
-Persistent filter state in the backend – We could generate a short unique identifier (e.g., ?filter_id=abc123) that maps to the full filter state stored on our servers. This would make URLs cleaner, but would require a bit of infrastructure for storing and expiring old filters.
+Persistent filter state in the backend – We could generate a short unique identifier that maps to the full filter state stored on our servers. This would make URLs cleaner, but would require a bit of infrastructure for storing and expiring old filters.
 I can chat with the other engineers to see if this is something we can tackle in the coming sprint. If it's a high priority ask, I can talk to Mike about which of my current stories I can move to the next sprint so I can start work on this immediately.
 
 Looking forward to hearing back from you!
