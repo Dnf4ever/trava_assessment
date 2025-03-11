@@ -1,0 +1,6 @@
+{
+    "first_name": { "value": "John", "op": "eq" },
+    "last_name": { "value": "Snow", "op": "neq" },
+    "age": { "value": 30, "op": "gte" },
+    "sort": { "field": "age", "direction": "asc" }
+}
