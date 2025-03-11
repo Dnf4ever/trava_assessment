@@ -5,7 +5,12 @@ const saveFilters = async (filters) => {
         body: JSON.stringify(filters)
     });
     const data = await response.json();
-    return data.shortUrl;  // e.g., "https://app.trava.com/users?filter=abc123xyz"
+    const shortUrl = data.shortUrl;  // e.g., "https://app.trava.com/users?filter=abc123xyz"
+
+    // Update the URL in the browser's address bar (without reloading the page)
+    window.history.pushState({}, "", shortUrl);
+
+    return shortUrl;
 };
 
 const loadFiltersFromUrl = async () => {
