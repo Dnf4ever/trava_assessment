@@ -5,5 +5,5 @@ const saveFilters = async (filters) => {
         body: JSON.stringify(filters)
     });
     const data = await response.json();
-    return data.shortUrl;  // e.g., "https://app.coolcompany.com/users?filter=abc123xyz"
+    return data.shortUrl;  // e.g., "https://app.trava.com/users?filter=abc123xyz"
 };
