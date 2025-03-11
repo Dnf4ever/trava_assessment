@@ -41,7 +41,7 @@ After the URL shortening feature is live, there are some possible UX enhancement
 
 This isn't the full scope of ongoing maintenance, these are just some of the things that popped into my head as possible pain points and other possible considerations, security being a big one.
 
-1) Redis Cache Cleanup and Expiration Handling – Since filter hashes are stored in Redis, it's important to manage expiration policies properly. Redis's built-in time-to-live settings should take care of this, but a background job should periodically clean up stale keys to ensure efficient memory usage and prevent unnecessary cache growth.
+1) Redis Cache Cleanup and Expiration Handling – Since filter hashes are stored in Redis, it's important to manage expiration policies properly. Redis's built-in time-to-live settings should take care of this, but a background job could periodically clean up stale keys to ensure efficient memory usage and prevent unnecessary cache growth.
 
 2) Monitoring for Hash Collisions – If the hash-generation method ever results in a duplicate (two different filter states producing the same hash), it could cause incorrect filters to be applied. Although this is highly unlikely due to the collision proof steps taken in the code, implementing logging or collision detection could help catch and resolve any issues that might pop up.
 
